@@ -1,5 +1,6 @@
 package dam.pmdm.MAB.guia;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.viewpager2.widget.ViewPager2;
+
+import java.util.Objects;
+
 import dam.pmdm.spyrothedragon.R;
 import dam.pmdm.MAB.guia.pasos.GuiaAdapter;
 
@@ -40,7 +44,8 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        preferencias = requireActivity().getSharedPreferences(NOMBRE_PREFERENCIAS, getContext().MODE_PRIVATE);
+        getContext();
+        preferencias = requireActivity().getSharedPreferences(NOMBRE_PREFERENCIAS, Context.MODE_PRIVATE);
         pasoActual = preferencias.getInt(PROGRESO_GUIA, 0);
 
         vistaPaginada = view.findViewById(R.id.viewPager);
@@ -62,10 +67,16 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
 
     @Override
     public void navigateToNextStep() {
-        if (vistaPaginada.getCurrentItem() < vistaPaginada.getAdapter().getItemCount() - 1) {
+        if (vistaPaginada.getCurrentItem() < Objects.requireNonNull(vistaPaginada.getAdapter()).getItemCount() - 1) {
             pasoActual++;
             guardarProgreso();
             vistaPaginada.setCurrentItem(pasoActual, true);
+            Log.d("GuiaDialogFragment", "Paso actual: " + pasoActual);
+            vistaPaginada.setPageTransformer((page, position) -> {
+                page.setAlpha(1 - Math.abs(position));
+                page.setTranslationX(-position * page.getWidth());
+            });
+
         } else {
             finalizarGuia();
         }
@@ -77,6 +88,7 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
             pasoActual--;
             guardarProgreso();
             vistaPaginada.setCurrentItem(pasoActual, true);
+
         }
     }
 

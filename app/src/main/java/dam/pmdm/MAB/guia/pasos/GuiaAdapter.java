@@ -19,7 +19,7 @@ public class GuiaAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0: return new GuiaPaso01Fragment();
-             case 1: return new GuiaPaso02Fragment();
+            case 1: return new GuiaPaso02Fragment();
             // case 2: return new GuiaPaso03Fragment();
             default:
                 return new GuiaPaso01Fragment();
