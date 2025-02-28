@@ -13,8 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import dam.pmdm.MAB.guia.GuiaNavigationListener;
-import dam.pmdm.spyrothedragon.R;
-import dam.pmdm.spyrothedragon.databinding.FragmentGuiaPaso01Binding;
 import dam.pmdm.spyrothedragon.databinding.FragmentGuiaPaso02Binding;
 
 /**

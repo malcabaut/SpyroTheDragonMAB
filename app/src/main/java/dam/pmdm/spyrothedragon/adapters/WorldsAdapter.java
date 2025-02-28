@@ -1,11 +1,13 @@
 package dam.pmdm.spyrothedragon.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -15,12 +17,13 @@ import dam.pmdm.spyrothedragon.models.World;
 
 public class WorldsAdapter extends RecyclerView.Adapter<WorldsAdapter.WorldsViewHolder> {
 
-    private List<World> list;
+    private final List<World> list;
 
     public WorldsAdapter(List<World> worldsList) {
         this.list = worldsList;
     }
 
+    @NonNull
     @Override
     public WorldsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, parent, false);
@@ -33,7 +36,7 @@ public class WorldsAdapter extends RecyclerView.Adapter<WorldsAdapter.WorldsView
         holder.nameTextView.setText(world.getName());
 
         // Cargar la imagen (simulado con un recurso drawable)
-        int imageResId = holder.itemView.getContext().getResources().getIdentifier(world.getImage(), "drawable", holder.itemView.getContext().getPackageName());
+        @SuppressLint("DiscouragedApi") int imageResId = holder.itemView.getContext().getResources().getIdentifier(world.getImage(), "drawable", holder.itemView.getContext().getPackageName());
         holder.imageImageView.setImageResource(imageResId);
     }
 

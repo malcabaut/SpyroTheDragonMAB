@@ -1,11 +1,13 @@
 package dam.pmdm.spyrothedragon.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -15,12 +17,13 @@ import dam.pmdm.spyrothedragon.models.Collectible;
 
 public class CollectiblesAdapter extends RecyclerView.Adapter<CollectiblesAdapter.CollectiblesViewHolder> {
 
-    private List<Collectible> list;
+    private final List<Collectible> list;
 
     public CollectiblesAdapter(List<Collectible> collectibleList) {
         this.list = collectibleList;
     }
 
+    @NonNull
     @Override
     public CollectiblesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, parent, false);
@@ -33,7 +36,7 @@ public class CollectiblesAdapter extends RecyclerView.Adapter<CollectiblesAdapte
         holder.nameTextView.setText(collectible.getName());
 
         // Cargar la imagen (simulado con un recurso drawable)
-        int imageResId = holder.itemView.getContext().getResources().getIdentifier(collectible.getImage(), "drawable", holder.itemView.getContext().getPackageName());
+        @SuppressLint("DiscouragedApi") int imageResId = holder.itemView.getContext().getResources().getIdentifier(collectible.getImage(), "drawable", holder.itemView.getContext().getPackageName());
         holder.imageImageView.setImageResource(imageResId);
     }
 

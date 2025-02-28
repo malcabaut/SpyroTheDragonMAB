@@ -12,4 +12,5 @@
     <string name="start">start</string>
     <string name="skip">skip</string>
     <string name="restablecerGuia">Volver a la Guia</string>
+    <string name="info">Info</string>
 </resources>
