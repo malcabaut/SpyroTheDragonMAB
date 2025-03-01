@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Fuego base (Color amarillo) -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M50,20 C60,10 80,30 70,40 C90,45 60,60 50,55 C40,60 20,45 30,40 C20,30 40,10 50,20 Z"/>
+
+    <!-- Capa intermedia (Color naranja) -->
+    <path
+        android:fillColor="#FF4500"
+        android:pathData="M50,25 C60,20 80,40 70,50 C85,55 55,65 50,60 C45,65 25,55 35,50 C30,40 45,20 50,25 Z"/>
+
+    <!-- Capa superior (Color rojo) -->
+    <path
+        android:fillColor="#FF6347"
+        android:pathData="M50,30 C60,25 80,45 70,60 C85,65 55,75 50,70 C45,75 25,65 35,60 C30,45 45,25 50,30 Z"/>
+
+    <!-- Picos adicionales (simulando la explosión del fuego) -->
+    <path
+        android:fillColor="#FF0000"
+        android:pathData="M50,35 C60,30 80,50 70,70 C90,80 50,90 50,80 C50,90 10,80 30,70 C20,50 40,30 50,35 Z"/>
+
+    <!-- Picos adicionales que salen hacia afuera, agregando más dinamismo -->
+    <path
+        android:fillColor="#FF4500"
+        android:pathData="M45,10 L50,3 L55,10 L50,18 L45,15 L42,10 L45,10 Z"/>
+    <path
+        android:fillColor="#FF4500"
+        android:pathData="M55,8 L60,2 L65,10 L60,15 L55,13 L52,10 L55,8 Z"/>
+    <path
+        android:fillColor="#FF6347"
+        android:pathData="M45,20 L50,15 L55,22 L50,25 L45,22 L43,18 L45,20 Z"/>
+    <path
+        android:fillColor="#FF6347"
+        android:pathData="M40,25 L50,20 L60,30 L55,35 L50,33 L45,30 L40,25 Z"/>
+
+    <!-- Detalles adicionales para dar un efecto de explosión -->
+    <path
+        android:fillColor="#FF8C00"
+        android:pathData="M50,40 L60,35 L70,45 L65,55 L50,50 L40,55 L35,45 L40,40 L50,40 Z"/>
+    <path
+        android:fillColor="#FF8C00"
+        android:pathData="M50,50 L60,45 L75,60 L65,65 L50,60 L40,65 L35,60 L50,50 Z"/>
+</vector>

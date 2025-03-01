@@ -1,6 +1,7 @@
 package dam.pmdm.spyrothedragon;
 
 import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+
 import java.util.Objects;
 
 import dam.pmdm.MAB.guia.GuiaDialogFragment;
@@ -22,6 +24,7 @@ import dam.pmdm.spyrothedragon.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     NavController navController = null;
+    private Menu menu; // Agregar esta variable para almacenar el menú
 
 
     // Constantes para claves de SharedPreferences
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         if (!guideCompleted) {
             showGuide(); // Muestra la guía
         }
+
     }
 
     private void showGuide() {
@@ -83,11 +87,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Infla el menú
+        // Infla el menú y lo almacena en la variable de instancia
         getMenuInflater().inflate(R.menu.about_menu, menu);
+        this.menu = menu; // Guarda el menú para su uso posterior
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

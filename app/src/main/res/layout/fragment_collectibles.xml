@@ -12,4 +12,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- VideoView para el Easter Egg, colocado por encima de todo -->
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:padding="10dp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

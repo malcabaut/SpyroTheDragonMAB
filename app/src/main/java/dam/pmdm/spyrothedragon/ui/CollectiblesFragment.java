@@ -1,5 +1,6 @@
 package dam.pmdm.spyrothedragon.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,28 +26,34 @@ import dam.pmdm.spyrothedragon.models.Collectible;
 public class CollectiblesFragment extends Fragment {
 
     private FragmentCollectiblesBinding binding;
-    private RecyclerView recyclerView;
     private CollectiblesAdapter adapter;
     private List<Collectible> collectiblesList;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflamos el layout usando View Binding
         binding = FragmentCollectiblesBinding.inflate(inflater, container, false);
-        recyclerView = binding.recyclerViewCollectibles;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        collectiblesList = new ArrayList<>();
-        adapter = new CollectiblesAdapter(collectiblesList);
-        recyclerView.setAdapter(adapter);
 
+        // Configurar RecyclerView
+        binding.recyclerViewCollectibles.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        // Inicializar lista de coleccionables
+        collectiblesList = new ArrayList<>();
+
+        // Crear el adapter pasando contexto, lista y binding
+        adapter = new CollectiblesAdapter(requireContext(), collectiblesList, binding);
+        binding.recyclerViewCollectibles.setAdapter(adapter);
+
+        // Cargar los datos desde el XML
         loadCollectibles();
+
         return binding.getRoot();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        binding = null; // Evita fugas de memoria
     }
 
     private void loadCollectibles() {
@@ -63,7 +70,7 @@ public class CollectiblesFragment extends Fragment {
             Collectible currentCollectible = null;
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
-                String tagName = null;
+                String tagName;
 
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
@@ -94,7 +101,9 @@ public class CollectiblesFragment extends Fragment {
                 eventType = parser.next();
             }
 
+            // Notificar al adapter que los datos han cambiado
             adapter.notifyDataSetChanged();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

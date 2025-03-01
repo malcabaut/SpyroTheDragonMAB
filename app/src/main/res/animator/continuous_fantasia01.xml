@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <!-- Animación continua: Rotación infinita -->
+        <objectAnimator
+            android:propertyName="rotation"
+            android:valueFrom="0"
+            android:valueTo="360"
+            android:duration="2000"
+            android:repeatCount="infinite"
+            android:interpolator="@android:anim/linear_interpolator"/>
+    </item>
+
+    <item>
+        <!-- Animación de cambio de tamaño (escala) continua -->
+        <objectAnimator
+            android:propertyName="scaleX"
+            android:valueFrom="1"
+            android:valueTo="1.5"
+            android:duration="1000"
+            android:repeatCount="infinite"
+            android:repeatMode="reverse" />
+    </item>
+
+    <item>
+        <!-- Animación de cambio de color (por ejemplo, color del texto) -->
+        <objectAnimator
+            android:propertyName="textColor"
+            android:valueFrom="@android:color/white"
+            android:valueTo="@android:color/holo_red_light"
+            android:duration="1000"
+            android:repeatCount="infinite"
+            android:repeatMode="reverse"/>
+    </item>
+
+    <item>
+        <!-- Animación de brillo (por ejemplo, sombra del texto) -->
+        <objectAnimator
+            android:propertyName="shadowRadius"
+            android:valueFrom="5"
+            android:valueTo="15"
+            android:duration="1000"
+            android:repeatCount="infinite"
+            android:repeatMode="reverse"/>
+    </item>
+</selector>

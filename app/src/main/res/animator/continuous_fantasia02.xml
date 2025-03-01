@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Animación continua: Rotación infinita -->
+    <item>
+        <objectAnimator
+            android:propertyName="rotation"
+            android:valueFrom="0"
+            android:valueTo="360"
+            android:duration="3000"
+            android:repeatCount="infinite"
+            android:interpolator="@android:anim/linear_interpolator"/>
+    </item>
+
+    <!-- Animación continua de opacidad (transparencia) -->
+    <item>
+        <objectAnimator
+            android:propertyName="alpha"
+            android:valueFrom="1"
+            android:valueTo="0.3"
+            android:duration="1500"
+            android:repeatCount="infinite"
+            android:repeatMode="reverse"/>
+    </item>
+
+    <!-- Animación continua de escala en X (tamaño) -->
+    <item>
+        <objectAnimator
+            android:propertyName="scaleX"
+            android:valueFrom="1"
+            android:valueTo="1.5"
+            android:duration="2000"
+            android:repeatCount="infinite"
+            android:repeatMode="reverse"/>
+    </item>
+
+    <!-- Animación continua de color de fondo -->
+    <item>
+        <objectAnimator
+            android:propertyName="backgroundColor"
+            android:valueFrom="@android:color/holo_blue_bright"
+            android:valueTo="@android:color/holo_green_light"
+            android:duration="3000"
+            android:repeatCount="infinite"
+            android:repeatMode="reverse"/>
+    </item>
+</selector>

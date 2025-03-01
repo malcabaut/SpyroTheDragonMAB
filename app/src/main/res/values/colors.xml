@@ -5,7 +5,15 @@
     <color name="orange">#e7a56e</color>
     <color name="yellow">#fbdf6a</color>
     <color name="yellow2">#88ffffff</color>
-    <color name="white">#ffffff</color>
-    <color name="black">#000000</color>
     <color name="transparent">#33000000</color>
+    <color name="primaryColor">#FF5722</color>
+    <color name="accentColor">#9A3312</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red_DD">#DD0000</color>
+    <color name="T_50">#50000000</color>
+    <color name="O_50">#50FFFFFF</color>
+    <color name="T_cc">#cc000000</color>
+    <color name="colorCardView">#40FBD92D</color> <!-- de fondo de reclicle -->
+    <color name="colorToque">#FBD92D</color> <!-- Color suave para simular el toque -->
 </resources>

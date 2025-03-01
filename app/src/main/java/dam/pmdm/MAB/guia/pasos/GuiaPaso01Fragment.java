@@ -113,4 +113,7 @@ public class GuiaPaso01Fragment extends Fragment {
         super.onDestroyView();
         binding = null; // Evitar fugas de memoria
     }
+
+
+
 }

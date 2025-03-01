@@ -2,23 +2,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent"> <!-- Fondo semi-transparente -->
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/guide_01"
+    android:background="@drawable/background_generico">
+
 
     <Button
+        style="@style/H1"
         android:id="@+id/btnSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saltar"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:backgroundTint="@color/yellow"
+        android:text="@string/skip_guide"
+        android:textColor="@color/white" />
 
     <Button
+        style="@style/H1"
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/start"
-        android:backgroundTint="@color/purple"
-        android:textColor="@color/white"/>
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_gradient"
+        android:elevation="6dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/start_guide"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
 </RelativeLayout>

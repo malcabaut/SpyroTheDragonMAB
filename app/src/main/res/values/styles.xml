@@ -2,9 +2,53 @@
 <resources>
     <!-- styles.xml -->
     <style name="FullScreenDialog" parent="Theme.MaterialComponents.DayNight.Dialog">
+
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
+    <style name="H1" parent="Theme.AppCompat.Light.DarkActionBar">
+        ...
+        <item name="android:fontFamily">@font/lithosbold</item>
+        <item name="android:textSize">@dimen/text_name_size</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:textColor">@color/T_cc</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">20</item>
+        <item name="android:shadowColor">#FFFFFF</item>
+        <item name="android:stateListAnimator">@animator/continuous_scalex</item>
+
+
+
+    </style>
+
+    <style name="ButtonStartGuide" parent="Widget.MaterialComponents.Button">
+        <!-- Tamaño y bordes redondeados -->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:minWidth">160dp</item>
+        <item name="android:paddingHorizontal">24dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:background">@drawable/btn_gradient</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/lithoslight</item>
+        <item name="android:elevation">8dp</item>
+    </style>
+
+    <style name="description" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:fontFamily">@font/super_mario</item>
+        <item name="android:textSize">@dimen/text_description_size</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">20</item>
+        <item name="android:shadowColor">#FFFFFF</item>
+    </style>
+
 
 </resources>
