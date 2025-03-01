@@ -1,40 +1,34 @@
 package dam.pmdm.MAB.guia.pasos;
 
+
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import dam.pmdm.MAB.guia.GuiaNavigationListener;
-import dam.pmdm.spyrothedragon.R;
 import dam.pmdm.spyrothedragon.databinding.FragmentGuiaPaso01Binding;
 
-/**
- * Fragmento que representa el primer paso de la guía de la aplicación.
- */
 public class GuiaPaso01Fragment extends Fragment {
 
     private static final String TAG = "GuiaPaso01Fragment";
     private FragmentGuiaPaso01Binding binding;
     private GuiaNavigationListener navigationListener;
 
-
-    /**
-     * Constructor vacío recomendado para fragmentos.
-     */
     public GuiaPaso01Fragment() {
-
+        // Constructor vacío requerido
     }
-
 
     @Nullable
     @Override
@@ -47,22 +41,100 @@ public class GuiaPaso01Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // Llamada a findNavigationListener para asignar el listener correctamente
         findNavigationListener();
-
-        // Configurar botones con animaciones
-        setupButtonsWithAnimations();
-
-        // Obtener NavController de la Activity en lugar de la vista
-        NavController navController = Navigation.findNavController(requireActivity(), R.id.navHostFragment);
-
-
-        // Navegar automáticamente a navigation_characters
-        navController.navigate(R.id.navigation_worlds);
+        setupButtons();
+        startAnimations();
     }
 
+    /**
+     * Configura el clic para saltar la guía.
+     */
+    private void setupButtons() {
+        // Se utiliza el botón base (btnSkip) para la interacción
+        binding.btnSkip.setOnClickListener(v -> {
+            if (navigationListener != null) navigationListener.skipGuide();
+        });
+    }
 
+    /**
+     * Inicia las animaciones sobre el TextView que muestra el texto del botón.
+     */
+    private void startAnimations() {
+        // Animamos únicamente el TextView (tvSkipText) en lugar del botón completo.
+        animateRainbowText(binding.btnSkip);
+        animateShadow(binding.btnSkip);
+        animateTextSize(binding.btnSkip);
+    }
+
+    /**
+     * Anima el cambio de color en un ciclo arcoíris en el TextView.
+     */
+    private void animateRainbowText(View... views) {
+        Integer[] rainbowColors = new Integer[]{
+                Color.RED, Color.MAGENTA, Color.BLUE, Color.CYAN, Color.GREEN, Color.YELLOW, Color.RED
+        };
+
+        ValueAnimator colorAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), (Object[]) rainbowColors);
+        colorAnimator.setDuration(3000);
+        colorAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        colorAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        colorAnimator.setInterpolator(new LinearInterpolator());
+
+        colorAnimator.addUpdateListener(animation -> {
+            int color = (int) animation.getAnimatedValue();
+            for (View view : views) {
+                if (view instanceof TextView) {
+                    ((TextView) view).setTextColor(color);
+                }
+            }
+        });
+
+        colorAnimator.start();
+    }
+
+    /**
+     * Anima una sombra pulsante en el TextView.
+     */
+    private void animateShadow(View... views) {
+        ValueAnimator shadowAnimator = ValueAnimator.ofFloat(5f, 30f);
+        shadowAnimator.setDuration(1500);
+        shadowAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        shadowAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        shadowAnimator.setInterpolator(new LinearInterpolator());
+
+        shadowAnimator.addUpdateListener(animation -> {
+            float radius = (float) animation.getAnimatedValue();
+            for (View view : views) {
+                if (view instanceof TextView) {
+                    ((TextView) view).setShadowLayer(radius, 0f, 0f, Color.WHITE);
+                }
+            }
+        });
+
+        shadowAnimator.start();
+    }
+
+    /**
+     * Anima el cambio de tamaño del texto en el TextView.
+     */
+    private void animateTextSize(View... views) {
+        ValueAnimator textSizeAnimator = ValueAnimator.ofFloat(18f, 25f);
+        textSizeAnimator.setDuration(1500);
+        textSizeAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        textSizeAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        textSizeAnimator.setInterpolator(new LinearInterpolator());
+
+        textSizeAnimator.addUpdateListener(animation -> {
+            float size = (float) animation.getAnimatedValue();
+            for (View view : views) {
+                if (view instanceof TextView) {
+                    ((TextView) view).setTextSize(size);
+                }
+            }
+        });
+
+        textSizeAnimator.start();
+    }
 
     /**
      * Busca y asigna el listener de navegación.
@@ -75,37 +147,9 @@ public class GuiaPaso01Fragment extends Fragment {
         }
 
         if (navigationListener == null) {
-            Log.e(TAG, "GuiaPaso01Fragment ERROR: No se encontró el listener.");
-            binding.btnNext.setEnabled(false); // Desactivar botón si no hay listener
+            Log.e(TAG, "ERROR: No se encontró el listener.");
+            binding.btnSkip.setEnabled(false);
         }
-    }
-
-
-    /**
-     * Configura los botones con animaciones y evita clics rápidos.
-     */
-    private void setupButtonsWithAnimations() {
-        Animation fadeIn = AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_in);
-
-        binding.btnNext.setOnClickListener(v -> {
-            Log.d(TAG, "GuiaPaso01Fragment Botón 'Siguiente' presionado.");
-            v.startAnimation(fadeIn);
-            v.setEnabled(true); // Evita doble clic
-            if (navigationListener != null) {
-                Log.d(TAG, "GuiaPaso01Fragment Navegando al siguiente paso.");
-                navigationListener.navigateToNextStep();
-            }
-        });
-
-        binding.btnSkip.setOnClickListener(v -> {
-            Log.d(TAG, "GuiaPaso01Fragment Botón 'Saltar' presionado.");
-            v.startAnimation(fadeIn);
-            v.setEnabled(true);
-            if (navigationListener != null) {
-                Log.d(TAG, "GuiaPaso01Fragment Saltando la guía.");
-                navigationListener.skipGuide();
-            }
-        });
     }
 
     @Override
@@ -113,7 +157,4 @@ public class GuiaPaso01Fragment extends Fragment {
         super.onDestroyView();
         binding = null; // Evitar fugas de memoria
     }
-
-
-
 }

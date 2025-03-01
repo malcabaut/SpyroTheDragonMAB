@@ -2,11 +2,15 @@ package dam.pmdm.MAB.guia;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -21,10 +25,15 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
 
     private static final String NOMBRE_PREFERENCIAS = "PreferenciasApp";
     private static final String PROGRESO_GUIA = "ProgresoGuia";
-    private static final String GUIA_COMPLETADA = "GuiaCompletada";
+    private static final String GUIA_COMPLETADA = "GuiaCompleta";
+
     private ViewPager2 vistaPaginada;
     private SharedPreferences preferencias;
     private int pasoActual = 0;
+
+    private MediaPlayer mediaPlayer;
+    private SoundPool soundPool;
+    private int soundId;
 
     public GuiaDialogFragment() {}
 
@@ -32,19 +41,32 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FullScreenDialog);
+
+        // Configurar SoundPool para efectos de sonido
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(1)
+                .setAudioAttributes(audioAttributes)
+                .build();
+
+        // Cargar sonido de paso de página
+        soundId = soundPool.load(requireContext(), R.raw.sfx_paperflip3, 1);
     }
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_guia, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        getContext();
         preferencias = requireActivity().getSharedPreferences(NOMBRE_PREFERENCIAS, Context.MODE_PRIVATE);
         pasoActual = preferencias.getInt(PROGRESO_GUIA, 0);
 
@@ -52,6 +74,15 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
         GuiaAdapter adaptador = new GuiaAdapter(getChildFragmentManager(), getLifecycle());
         vistaPaginada.setAdapter(adaptador);
         vistaPaginada.setCurrentItem(pasoActual, false);
+
+        // Reproducir sonido al cambiar de fragmento
+        vistaPaginada.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                playPageFlipSound();
+            }
+        });
     }
 
     @Override
@@ -63,6 +94,49 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
                     ViewGroup.LayoutParams.MATCH_PARENT
             );
         }
+        // Iniciar música de fondo
+        startBackgroundMusic();
+    }
+
+    private void startBackgroundMusic() {
+        mediaPlayer = MediaPlayer.create(getContext(), R.raw.spyro_guia01);
+        if (mediaPlayer != null) {
+            mediaPlayer.setVolume(0.8f, 0.5f);
+            mediaPlayer.setPlaybackParams(mediaPlayer.getPlaybackParams().setSpeed(0.7f));
+            mediaPlayer.start();
+            mediaPlayer.setOnCompletionListener(mp -> {
+                mp.release();
+                mediaPlayer = null;
+            });
+        }
+    }
+
+    private void playPageFlipSound() {
+        if (soundPool != null) {
+            soundPool.play(soundId, 1, 1, 1, 0, 1f);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        releaseResources();
+    }
+
+    private void releaseResources() {
+        // Liberar SoundPool
+        if (soundPool != null) {
+            soundPool.release();
+            soundPool = null;
+        }
+        // Detener la música si sigue en reproducción
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
     @Override
@@ -72,11 +146,6 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
             guardarProgreso();
             vistaPaginada.setCurrentItem(pasoActual, true);
             Log.d("GuiaDialogFragment", "Paso actual: " + pasoActual);
-            vistaPaginada.setPageTransformer((page, position) -> {
-                page.setAlpha(1 - Math.abs(position));
-                page.setTranslationX(-position * page.getWidth());
-            });
-
         } else {
             finalizarGuia();
         }
@@ -88,7 +157,6 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
             pasoActual--;
             guardarProgreso();
             vistaPaginada.setCurrentItem(pasoActual, true);
-
         }
     }
 
@@ -102,6 +170,7 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
     }
 
     private void finalizarGuia() {
+        releaseResources();
         preferencias.edit().putBoolean(GUIA_COMPLETADA, true).apply();
         dismiss();
     }

@@ -6,8 +6,8 @@
         <objectAnimator
             android:propertyName="scaleX"
             android:valueFrom="1"
-            android:valueTo="1.5"
-            android:duration="2000"
+            android:valueTo="1.10"
+            android:duration="2500"
             android:repeatCount="infinite"
             android:repeatMode="reverse"/>
     </item>

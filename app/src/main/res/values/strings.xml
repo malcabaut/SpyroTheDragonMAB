@@ -12,6 +12,7 @@
     <string name="title_guide">Guia S</string>
     <string name="start_guide">start</string>
     <string name="skip_guide">skip</string>
+    <string name="continue_guide">continue</string>
     <string name="restablecerGuia">Volver a la Guia</string>
     <string name="info">Info</string>
     <string name="guide_intro_title">Bienvenido a la Guía</string>
