@@ -24,6 +24,7 @@ public class GuiaAdapter extends FragmentStateAdapter {
             case 2: return new GuiaPaso03Fragment();
             case 3: return new GuiaPaso04Fragment();
             case 4: return new GuiaPaso05Fragment();
+            case 5: return new GuiaPaso06Fragment();
             default:
                 return new GuiaPaso06Fragment();
         }

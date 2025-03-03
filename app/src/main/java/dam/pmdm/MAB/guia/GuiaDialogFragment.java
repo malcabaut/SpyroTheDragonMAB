@@ -1,5 +1,6 @@
 package dam.pmdm.MAB.guia;
 
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioAttributes;
@@ -16,10 +17,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import java.util.Objects;
+
 import dam.pmdm.spyrothedragon.R;
 import dam.pmdm.MAB.guia.pasos.GuiaAdapter;
 
-public class GuiaDialogFragment extends DialogFragment {
+public class GuiaDialogFragment extends DialogFragment implements GuiaNavigationListener {
 
     private static final String NOMBRE_PREFERENCIAS = "PreferenciasApp";
     private static final String PROGRESO_GUIA = "ProgresoGuia";
@@ -88,7 +91,7 @@ public class GuiaDialogFragment extends DialogFragment {
                 playPageFlipSound();
 
                 // Comprobar si es el último paso
-                if (position == vistaPaginada.getAdapter().getItemCount() - 1) {
+                if (position == Objects.requireNonNull(vistaPaginada.getAdapter()).getItemCount()) {
                     finalizarGuia();
                 }
             }
@@ -157,5 +160,31 @@ public class GuiaDialogFragment extends DialogFragment {
             preferencias.edit().putBoolean(GUIA_COMPLETADA, true).apply();
         }
         dismiss();
+    }
+
+    @Override
+    public void navigateToNextStep() {
+        if (vistaPaginada.getCurrentItem() < Objects.requireNonNull(vistaPaginada.getAdapter()).getItemCount() - 1) {
+            pasoActual++;
+            guardarProgreso();
+            vistaPaginada.setCurrentItem(pasoActual, true);
+            Log.d("GuiaDialogFragment", "Paso actual: " + pasoActual);
+        } else {
+            finalizarGuia();
+        }
+    }
+
+    @Override
+    public void navigateToPreviousStep() {
+        if (vistaPaginada.getCurrentItem() > 0) {
+            pasoActual--;
+            guardarProgreso();
+            vistaPaginada.setCurrentItem(pasoActual, true);
+        }
+    }
+
+    @Override
+    public void skipGuide() {
+        finalizarGuia();
     }
 }
