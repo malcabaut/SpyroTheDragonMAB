@@ -8,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class GuiaAdapter extends FragmentStateAdapter {
 
-    private static final int TOTAL_PASOS = 2; // Cambiar a 3 cuando los demás estén listos
+    private static final int TOTAL_PASOS = 6;
 
     public GuiaAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
@@ -17,12 +17,15 @@ public class GuiaAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+        // Dependiendo de la posición, se crea el fragmento correspondiente
         switch (position) {
             case 0: return new GuiaPaso01Fragment();
             case 1: return new GuiaPaso02Fragment();
-            // case 2: return new GuiaPaso03Fragment();
+            case 2: return new GuiaPaso03Fragment();
+            case 3: return new GuiaPaso04Fragment();
+            case 4: return new GuiaPaso05Fragment();
             default:
-                return new GuiaPaso01Fragment();
+                return new GuiaPaso06Fragment();
         }
     }
 

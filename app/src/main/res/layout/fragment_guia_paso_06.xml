@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_vertical|center_horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/guide_06">
+
+    <!-- Texto de resumen de la guía -->
+    <TextView
+        android:id="@+id/textguia06"
+        style="@style/textguia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/guide_final_summary_text"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Botón "Skip" -->
+    <Button
+        style="@style/H1"
+        android:id="@+id/btnSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellow"
+        android:text="@string/skip_guide"
+        android:textColor="@color/white" />
+
+</LinearLayout>

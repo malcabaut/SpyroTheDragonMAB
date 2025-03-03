@@ -34,6 +34,19 @@
         <item name="android:stateListAnimator">@animator/continuous_scalex</item>
     </style>
 
+    <style name="H1_scalexy" parent="Theme.AppCompat.Light.DarkActionBar">
+        ...
+        <item name="android:fontFamily">@font/lithosbold</item>
+        <item name="android:textSize">@dimen/text_name_size</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:textColor">@color/T_cc</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">50</item>
+        <item name="android:shadowColor">#FF00FF</item>
+        <item name="android:stateListAnimator">@animator/continuous_scalexy</item>
+    </style>
+
 
     <style name="description" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:fontFamily">@font/lithos</item>
@@ -59,6 +72,22 @@
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">@font/lithos</item>
         <item name="android:elevation">8dp</item>
+    </style>
+
+    <style name="textguia" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:fontFamily">@font/lithos</item>
+        <item name="android:textSize">@dimen/text_description_size</item>
+        <item name="android:padding">@dimen/text_padding</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">20</item>
+        <item name="android:shadowColor">#FFEB3B</item>
+        <item name="android:stateListAnimator">@animator/continuous_rotation_balaceo</item>
+    </style>
+
+    <style name="alpha" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:stateListAnimator">@animator/continuous_alpha</item>
     </style>
 
 </resources>

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/guide_02">
+    android:id="@+id/guide_05">
 
     <!-- Botón "Skip" -->
     <Button
@@ -23,15 +23,14 @@
 
 
     <TextView
-        android:id="@+id/textguia02"
+        android:id="@+id/textguia04"
         style="@style/textguia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="400dp"
         android:gravity="center"
-        android:text="@string/guide_characters_text" />
-
+        android:text="@string/guide_about_text" />
 
 
     <pl.droidsonroids.gif.GifImageView
@@ -44,22 +43,21 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="200dp"
         android:src="@drawable/swipe_left01"
-
         tools:src="@drawable/swipe_left01" />
 
-    <ImageView
-        android:id="@+id/anillo_g2"
-        style="@style/H1_scalex"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="-50dp"
-        android:layout_marginBottom="-75dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/anillo_01" />
+    <TextView
+        android:id="@+id/Fecha"
+        android:visibility="invisible"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/white"
+        android:background="@drawable/baseline_arrow_outward_24"
+        android:padding="8dp"/>
+
+
 
 </RelativeLayout>
-

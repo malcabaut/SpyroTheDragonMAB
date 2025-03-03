@@ -16,8 +16,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import dam.pmdm.MAB.guia.GuiaNavigationListener;
+import dam.pmdm.spyrothedragon.R;
 import dam.pmdm.spyrothedragon.databinding.FragmentGuiaPaso01Binding;
 
 public class GuiaPaso01Fragment extends Fragment {
@@ -44,6 +47,7 @@ public class GuiaPaso01Fragment extends Fragment {
         findNavigationListener();
         setupButtons();
         startAnimations();
+
     }
 
     /**
@@ -114,6 +118,7 @@ public class GuiaPaso01Fragment extends Fragment {
         shadowAnimator.start();
     }
 
+
     /**
      * Anima el cambio de tamaño del texto en el TextView.
      */
@@ -152,9 +157,4 @@ public class GuiaPaso01Fragment extends Fragment {
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null; // Evitar fugas de memoria
-    }
 }

@@ -20,4 +20,11 @@
     <string name="logo_spyro_image">logo de spyro</string>
     <string name="down_logo_spyro_text">Debajo de logo</string>
     <string name="guide_intro_p">parrafo de texto\n</string>
+
+    <string name="guide_characters_text">Explora en detalle a todos los personajes del mundo de Spyro, conoce sus historias, habilidades y curiosidades.</string>
+    <string name="guide_worlds_text">Descubre los increíbles mundos de Spyro, sus secretos ocultos, desafíos únicos y todo lo que los hace especiales.</string>
+    <string name="guide_collectibles_text">Encuentra y colecciona todos los objetos especiales de Spyro, desde gemas hasta huevos de dragón y más sorpresas.</string>
+    <string name="guide_about_text">Aqui podras encontrar informacion acerca de la aplicación.</string>
+    <string name="guide_final_summary_text">¡Felicidades! Has completado todos los pasos de la guía. Ahora estás listo para explorar todo lo que la aplicación tiene para ofrecer. Pulsa el botón para comenzar a usar la aplicación y disfrutar de una experiencia completa en el mundo de Spyro.</string>
+
 </resources>

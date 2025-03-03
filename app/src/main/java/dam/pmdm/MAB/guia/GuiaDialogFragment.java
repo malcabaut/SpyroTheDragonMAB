@@ -16,12 +16,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import java.util.Objects;
-
 import dam.pmdm.spyrothedragon.R;
 import dam.pmdm.MAB.guia.pasos.GuiaAdapter;
 
-public class GuiaDialogFragment extends DialogFragment implements GuiaNavigationListener {
+public class GuiaDialogFragment extends DialogFragment {
 
     private static final String NOMBRE_PREFERENCIAS = "PreferenciasApp";
     private static final String PROGRESO_GUIA = "ProgresoGuia";
@@ -42,7 +40,7 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.FullScreenDialog);
 
-        // Configurar SoundPool para efectos de sonido
+        // Configuración de SoundPool para efectos de sonido
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_GAME)
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
@@ -67,8 +65,10 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        preferencias = requireActivity().getSharedPreferences(NOMBRE_PREFERENCIAS, Context.MODE_PRIVATE);
-        pasoActual = preferencias.getInt(PROGRESO_GUIA, 0);
+        preferencias = getActivity() != null ? getActivity().getSharedPreferences(NOMBRE_PREFERENCIAS, Context.MODE_PRIVATE) : null;
+        if (preferencias != null) {
+            pasoActual = preferencias.getInt(PROGRESO_GUIA, 0); // Restaurar progreso guardado
+        }
 
         vistaPaginada = view.findViewById(R.id.viewPager);
         GuiaAdapter adaptador = new GuiaAdapter(getChildFragmentManager(), getLifecycle());
@@ -80,7 +80,17 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                Log.d("GuiaDialogFragment", "Página seleccionada: " + position);
+
+                // Llamar a navigateToNextStep cuando se cambia a un nuevo paso
+                pasoActual = position;
+                guardarProgreso();
                 playPageFlipSound();
+
+                // Comprobar si es el último paso
+                if (position == vistaPaginada.getAdapter().getItemCount() - 1) {
+                    finalizarGuia();
+                }
             }
         });
     }
@@ -89,13 +99,9 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
     public void onStart() {
         super.onStart();
         if (getDialog() != null && getDialog().getWindow() != null) {
-            getDialog().getWindow().setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-            );
+            getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         }
-        // Iniciar música de fondo
-        startBackgroundMusic();
+        startBackgroundMusic(); // Iniciar música de fondo
     }
 
     private void startBackgroundMusic() {
@@ -119,17 +125,17 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        guardarProgreso(); // Guardar progreso cuando el fragmento es destruido
         releaseResources();
+        super.onDestroy();
     }
 
     private void releaseResources() {
-        // Liberar SoundPool
+        // Liberar recursos de SoundPool y MediaPlayer
         if (soundPool != null) {
             soundPool.release();
             soundPool = null;
         }
-        // Detener la música si sigue en reproducción
         if (mediaPlayer != null) {
             if (mediaPlayer.isPlaying()) {
                 mediaPlayer.stop();
@@ -139,40 +145,17 @@ public class GuiaDialogFragment extends DialogFragment implements GuiaNavigation
         }
     }
 
-    @Override
-    public void navigateToNextStep() {
-        if (vistaPaginada.getCurrentItem() < Objects.requireNonNull(vistaPaginada.getAdapter()).getItemCount() - 1) {
-            pasoActual++;
-            guardarProgreso();
-            vistaPaginada.setCurrentItem(pasoActual, true);
-            Log.d("GuiaDialogFragment", "Paso actual: " + pasoActual);
-        } else {
-            finalizarGuia();
-        }
-    }
-
-    @Override
-    public void navigateToPreviousStep() {
-        if (vistaPaginada.getCurrentItem() > 0) {
-            pasoActual--;
-            guardarProgreso();
-            vistaPaginada.setCurrentItem(pasoActual, true);
-        }
-    }
-
-    @Override
-    public void skipGuide() {
-        finalizarGuia();
-    }
-
     private void guardarProgreso() {
-        preferencias.edit().putInt(PROGRESO_GUIA, pasoActual).apply();
+        if (preferencias != null) {
+            preferencias.edit().putInt(PROGRESO_GUIA, pasoActual).apply();
+        }
     }
 
     private void finalizarGuia() {
         releaseResources();
-        preferencias.edit().putBoolean(GUIA_COMPLETADA, true).apply();
+        if (preferencias != null) {
+            preferencias.edit().putBoolean(GUIA_COMPLETADA, true).apply();
+        }
         dismiss();
     }
 }
-

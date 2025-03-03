@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/guide_02">
+    android:id="@+id/guide_03">
 
     <!-- Botón "Skip" -->
     <Button
@@ -23,15 +23,14 @@
 
 
     <TextView
-        android:id="@+id/textguia02"
+        android:id="@+id/textguia03"
         style="@style/textguia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="400dp"
         android:gravity="center"
-        android:text="@string/guide_characters_text" />
-
+        android:text="@string/guide_worlds_text" />
 
 
     <pl.droidsonroids.gif.GifImageView
@@ -48,18 +47,15 @@
         tools:src="@drawable/swipe_left01" />
 
     <ImageView
-        android:id="@+id/anillo_g2"
+        android:id="@+id/anillo_g3"
         style="@style/H1_scalex"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="-50dp"
         android:layout_marginBottom="-75dp"
-        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/anillo_01" />
 
 </RelativeLayout>
-

@@ -1,24 +1,25 @@
 package dam.pmdm.MAB.guia.pasos;
 
-
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import dam.pmdm.MAB.guia.GuiaNavigationListener;
+import dam.pmdm.spyrothedragon.R;
 import dam.pmdm.spyrothedragon.databinding.FragmentGuiaPaso02Binding;
 
 public class GuiaPaso02Fragment extends Fragment {
@@ -26,6 +27,11 @@ public class GuiaPaso02Fragment extends Fragment {
     private static final String TAG = "GuiaPaso02Fragment";
     private FragmentGuiaPaso02Binding binding;
     private GuiaNavigationListener navigationListener;
+
+    // Definir los tiempos de retraso
+    private static final long SHOW_DELAY = 4000; // 4 segundos para mostrar
+    private static final long HIDE_DELAY = 6000; // 6 segundos para ocultar
+
 
     public GuiaPaso02Fragment() {
         // Constructor vacío requerido
@@ -43,8 +49,46 @@ public class GuiaPaso02Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         findNavigationListener();
-        setupButtons();
         startAnimations();
+        setupButtons();
+        // Inicialmente hacer invisible el GifImageView
+        binding.swipeLeft.setVisibility(View.INVISIBLE);
+        // Ciclo infinito para mostrar y ocultar la mano
+        cycleVisibility();
+    }
+
+    /**
+     * Método que gestiona el ciclo de visibilidad del mano
+     */
+    private void cycleVisibility() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Cambiar la visibilidad a VISIBLE después de 5 segundos
+                binding.swipeLeft.setVisibility(View.VISIBLE);
+
+                // Configurar el segundo retraso para ocultarlo después de 5 segundos de visibilidad
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Hacerlo invisible después de 2 segundos
+                        binding.swipeLeft.setVisibility(View.INVISIBLE);
+
+                        // Repetir el ciclo
+                        cycleVisibility();
+                    }
+                }, HIDE_DELAY); // Retraso de 2 segundos para ocultarlo
+            }
+        }, SHOW_DELAY); // Retraso de 5 segundos para mostrarlo
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Obtener NavController de la Activity en lugar de la vista
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.navHostFragment);
+        // Navegar automáticamente a navigation_worlds
+        navController.navigate(R.id.navigation_characters);
     }
 
     /**
@@ -153,9 +197,4 @@ public class GuiaPaso02Fragment extends Fragment {
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null; // Evitar fugas de memoria
-    }
 }
