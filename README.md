@@ -36,19 +36,31 @@ Esta aplicación está inspirada en el universo de *Spyro the Dragon*. Su objeti
 
 ## Tecnologías utilizadas
 
--Android SDK: Utiliza componentes como RecyclerView, TextView, ImageView para construir la interfaz y manejar listas de datos.
--ObjectAnimator & AnimatorSet: Se usan para crear animaciones de transformación, como escalado, rotación y cambio de opacidad en los elementos de la interfaz.
--MediaPlayer: Reproduce sonidos en respuesta a acciones del usuario, como la animación de un personaje.
--SoundPool: Usado en conjunto con MediaPlayer para manejar efectos de sonido y optimización de recursos, como los efectos de fuego o respiración de dragón.
--XML Layout: Se utiliza para definir la estructura visual de cada elemento en la lista, como las tarjetas con imagen y texto.
--Java: El código está escrito en Java, gestionando la lógica de la aplicación y la interacción con la interfaz.
--ViewPager2: Se emplea para la navegación horizontal entre fragmentos, proporcionando una experiencia de desplazamiento fluido.
--Fragmentos: Usados para modularizar la UI y gestionar diferentes pantallas o secciones de la aplicación.
--DialogFragment: Utilizado para mostrar cuadros de diálogo modales que permiten interacción sin abandonar la actividad actual.
--RecyclerView: Utilizado para mostrar listas de elementos de manera eficiente y con desplazamiento.
--ConstraintLayout: Se utiliza para crear diseños de interfaz flexibles y adaptables a diferentes tamaños de pantalla.
--Logcat: Usado para la depuración, proporcionando registros que ayudan a monitorear el estado de la aplicación durante el desarrollo.
--SharedPreferences: Se use en la app para almacenar configuraciones o preferencias del usuario de manera persistente.
+  -Android SDK: Utiliza componentes como RecyclerView, TextView, ImageView para construir la interfaz y manejar listas de datos.
+
+  -ObjectAnimator & AnimatorSet: Se usan para crear animaciones de transformación, como escalado, rotación y cambio de opacidad en los elementos de la interfaz.
+
+  -MediaPlayer: Reproduce sonidos en respuesta a acciones del usuario, como la animación de un personaje.
+
+  -SoundPool: Usado en conjunto con MediaPlayer para manejar efectos de sonido y optimización de recursos, como los efectos de fuego o respiración de dragón.
+
+  -XML Layout: Se utiliza para definir la estructura visual de cada elemento en la lista, como las tarjetas con imagen y texto.
+
+  -Java: El código está escrito en Java, gestionando la lógica de la aplicación y la interacción con la interfaz.
+
+  -ViewPager2: Se emplea para la navegación horizontal entre fragmentos, proporcionando una experiencia de desplazamiento fluido.
+
+  -Fragmentos: Usados para modularizar la UI y gestionar diferentes pantallas o secciones de la aplicación.
+
+  -DialogFragment: Utilizado para mostrar cuadros de diálogo modales que permiten interacción sin abandonar la actividad actual.
+
+  -RecyclerView: Utilizado para mostrar listas de elementos de manera eficiente y con desplazamiento.
+
+  -ConstraintLayout: Se utiliza para crear diseños de interfaz flexibles y adaptables a diferentes tamaños de pantalla.
+
+  -Logcat: Usado para la depuración, proporcionando registros que ayudan a monitorear el estado de la aplicación durante el desarrollo.
+
+  -SharedPreferences: Se use en la app para almacenar configuraciones o preferencias del usuario de manera persistente.
 
 ---
 
@@ -71,3 +83,4 @@ Durante el desarrollo de este proyecto, se aprendió a integrar animaciones y so
 
 guia aqui:
 ![guia_ALL.gif](/master/README_IMG/guia_ALL.gif)
+![guia_ALL.gif](/master/README_IMG/guia02.png)
