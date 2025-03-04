@@ -82,5 +82,5 @@ Durante el desarrollo de este proyecto, se aprendió a integrar animaciones y so
 ## Capturas de pantalla (opcional)
 
 guia aqui:
-![guia_ALL.gif](/master/README_IMG/guia_ALL.gif)
-![guia_ALL.gif](/master/README_IMG/guia02.png)
+![guia_ALL.gif](/README_IMG/guia_ALL.gif)
+![guia_ALL.gif](/README_IMG/guia02.png)
