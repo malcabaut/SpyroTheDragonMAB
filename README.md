@@ -98,4 +98,8 @@ Durante el desarrollo de este proyecto, se aprendió a integrar animaciones y so
 ![Pantalla 6](/README_IMG/guia07.png)
 ### Pantalla 6: Resumen final de la guía y cierre
 ![Pantalla 6](/README_IMG/guia08.png)
+
+### Easter Eggs
+![Easter Eggs1](/README_IMG/egg01.gif)
+![Easter Eggs2](/README_IMG/egg02.gif)
 ****
