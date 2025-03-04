@@ -36,11 +36,19 @@ Esta aplicación está inspirada en el universo de *Spyro the Dragon*. Su objeti
 
 ## Tecnologías utilizadas
 
-- **Lenguaje:** Java
-- **Interfaz de usuario:** Layouts XML, RecyclerView, CardView, DrawerLayout, Dialogs para la guia.
-- **Animaciones:** Transiciones entre pantallas, animaciones para los bocadillos informativos y los Easter Eggs.
-- **Sonidos:** Efectos de sonido temáticos de *Spyro the Dragon* para mejorar la interacción del usuario.
-- **Gestión de estados:** SharedPreferences para evitar que la guía se muestre más de una vez.
+-Android SDK: Utiliza componentes como RecyclerView, TextView, ImageView para construir la interfaz y manejar listas de datos.
+-ObjectAnimator & AnimatorSet: Se usan para crear animaciones de transformación, como escalado, rotación y cambio de opacidad en los elementos de la interfaz.
+-MediaPlayer: Reproduce sonidos en respuesta a acciones del usuario, como la animación de un personaje.
+-SoundPool: Usado en conjunto con MediaPlayer para manejar efectos de sonido y optimización de recursos, como los efectos de fuego o respiración de dragón.
+-XML Layout: Se utiliza para definir la estructura visual de cada elemento en la lista, como las tarjetas con imagen y texto.
+-Java: El código está escrito en Java, gestionando la lógica de la aplicación y la interacción con la interfaz.
+-ViewPager2: Se emplea para la navegación horizontal entre fragmentos, proporcionando una experiencia de desplazamiento fluido.
+-Fragmentos: Usados para modularizar la UI y gestionar diferentes pantallas o secciones de la aplicación.
+-DialogFragment: Utilizado para mostrar cuadros de diálogo modales que permiten interacción sin abandonar la actividad actual.
+-RecyclerView: Utilizado para mostrar listas de elementos de manera eficiente y con desplazamiento.
+-ConstraintLayout: Se utiliza para crear diseños de interfaz flexibles y adaptables a diferentes tamaños de pantalla.
+-Logcat: Usado para la depuración, proporcionando registros que ayudan a monitorear el estado de la aplicación durante el desarrollo.
+-SharedPreferences: Se use en la app para almacenar configuraciones o preferencias del usuario de manera persistente.
 
 ---
 
@@ -49,7 +57,7 @@ Esta aplicación está inspirada en el universo de *Spyro the Dragon*. Su objeti
 1. Clona este repositorio en tu máquina local.
 2. Abre el proyecto en Android Studio.
 3. Explora la aplicación en el emulador y verifica las funcionalidades de la guía de inicio y los Easter Eggs.
-4. Para probar la guía de inicio, asegúrate de ejecutar la app por primera vez para ver el flujo completo de la introducción.
+4. Para probar la guía de inicio, puedes volver a a verla desde la barra de navegación, en los 3 puntos.
 
 ---
 
@@ -61,4 +69,4 @@ Durante el desarrollo de este proyecto, se aprendió a integrar animaciones y so
 
 ## Capturas de pantalla (opcional)
 
-Si lo deseas, agrega imágenes que muestren la interfaz o funcionalidades de la app.
+![guia gif](![guia_ALL.gif](README_IMG%2Fguia_ALL.gif))
