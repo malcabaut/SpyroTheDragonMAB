@@ -88,11 +88,14 @@ Durante el desarrollo de este proyecto, se aprendió a integrar animaciones y so
 ![Pantalla 1](/README_IMG/guia02.png)
 ### Pantalla 2: Explicación de la pestaña Personajes (primer tab)
 ![Pantalla 2](/README_IMG/guia03.png)
+#### Gif mano pasado cada x segudos se muestra
+![Pantalla 2_mano](/README_IMG/guia04.png)
 ### Pantalla 3: Explicación de la pestaña Mundos (segundo tab)
-![Pantalla 3](/README_IMG/guia04.png)
-### Pantalla 4: Explicación de la pestaña Coleccionables (tercer tab)
 ![Pantalla 4](/README_IMG/guia05.png)
-### Pantalla 5: Explicación del icono de información (icono de la action bar)
+### Pantalla 4: Explicación de la pestaña Coleccionables (tercer tab)
 ![Pantalla 5](/README_IMG/guia06.png)
-### Pantalla 6: Resumen final de la guía y cierre
+### Pantalla 5: Explicación del icono de información (icono de la action bar)
 ![Pantalla 6](/README_IMG/guia07.png)
+### Pantalla 6: Resumen final de la guía y cierre
+![Pantalla 6](/README_IMG/guia08.png)
+****
