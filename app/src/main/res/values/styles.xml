@@ -4,7 +4,7 @@
     <style name="FullScreenDialog" parent="Theme.MaterialComponents.DayNight.Dialog">
 
         <item name="android:windowIsFloating">false</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/transparent01</item>
         <item name="android:windowNoTitle">true</item>
     </style>
 
@@ -89,5 +89,33 @@
     <style name="alpha" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:stateListAnimator">@animator/continuous_alpha</item>
     </style>
+
+
+    <style name="bocadillo" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Ajuste de tamaño -->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_margin">20dp</item>
+
+        <!-- Estilo del fondo -->
+        <item name="android:background">@drawable/old_parchment_v_xml</item>
+        <item name="android:backgroundTint">@color/yellow</item>
+        <item name="android:backgroundTintMode">multiply</item>
+
+        <!-- Estilo del texto -->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/lithos</item>
+        <item name="android:lineHeight">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.05</item>
+
+        <!-- Transparencia y alineación -->
+        <item name="android:alpha">0.9</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
 
 </resources>

@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/guide_06"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center_vertical|center_horizontal"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/guide_06">
+    android:gravity="center_horizontal">
 
-    <!-- Texto de resumen de la guía -->
+
     <TextView
         android:id="@+id/textguia06"
-        style="@style/textguia"
+        style="@style/bocadillo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:gravity="center"
         android:text="@string/guide_final_summary_text"
-        android:layout_marginBottom="32dp" />
+        android:background="@drawable/old_parchment_v_xml"
+        android:layout_marginBottom="32dp"
+        android:padding="16dp"
+        android:textColorLink="@color/black" />
 
-    <!-- Botón "Skip" -->
+
     <Button
         style="@style/H1"
         android:id="@+id/btnSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/yellow"
-        android:text="@string/skip_guide"
-        android:textColor="@color/white" />
+        android:text="@string/start_guide"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:padding="16dp"
+        android:paddingBottom="32dp"/>
 
 </LinearLayout>
+

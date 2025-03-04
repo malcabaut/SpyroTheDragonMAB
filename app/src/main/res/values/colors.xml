@@ -6,6 +6,7 @@
     <color name="yellow">#fbdf6a</color>
     <color name="yellow2">#88ffffff</color>
     <color name="transparent">#B7673AB7</color>
+    <color name="transparent01">#00000000</color>
     <color name="primaryColor">#FF5722</color>
     <color name="accentColor">#9A3312</color>
     <color name="black">#FF000000</color>
